@@ -15,6 +15,7 @@ function Todo(props) {
     const newTodos = {...props.todos};
     delete newTodos[props.id]
     props.setTodo(newTodos)
+    localStorage.setItem('todos', JSON.stringify(newTodos))
    
   }
 
@@ -43,7 +44,7 @@ function Todo(props) {
          <Card.Body>
            <Row>
              <Col xs='10'>
-               <Card.Text>
+               <Card.Text className='align-items-center'>
                  {props.text}
                </Card.Text>
              </Col>

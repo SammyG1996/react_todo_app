@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
@@ -8,7 +8,14 @@ import Input from './Input'
 
 function TodoApp() {
 
-  const [todos, setTodos] = useState({12434: 'This is a test'})
+  // localStorage.setItem('todos', JSON.stringify(props.todos))
+
+  useEffect(()=>{
+    const todos = localStorage.getItem('todos')
+    setTodos(JSON.parse(todos))
+  }, [])
+
+  const [todos, setTodos] = useState({})
   
 
   

@@ -14,6 +14,7 @@ function MyModal(props) {
     const newTodos = {...props.todos};
     newTodos[props.parentsId] = input;
     props.setTodo(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos))
     props.setIsEditing(false);
   }
  
