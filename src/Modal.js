@@ -4,15 +4,21 @@ import { Modal } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
 function MyModal(props) {
-
+  //I use this state to capture the value that is being typed into the form input
   const [input, setInput] = useState(props.text);
 
+  //The functions bellow will handle the differnt inputs
+
+  //handleClose() sets the is edditing state in the parent component to false
+  //in order to close the modal
   const handleClose = () => props.setIsEditing(false);
+
+  //handleSave() will prevent the default refresh and then updated the todo state 
+  //in the parent object. It will also then set local storage and close the modal
+  //by setting the isEdditing prop to false in the parent
   const handleSave = (e) => {
     e.preventDefault();
-
     const newTodos = {...props.todos};
-    console.log(newTodos[props.parentsId])
     newTodos[props.parentsId] = {'input': input, 'isChecked': props.isChecked};
     props.setTodo(newTodos);
     localStorage.setItem('todos', JSON.stringify(newTodos))

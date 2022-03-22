@@ -8,13 +8,13 @@ import Input from './Input'
 
 function TodoApp() {
 
-  // localStorage.setItem('todos', JSON.stringify(props.todos))
-
+  //When the app is first loaded the todo state will be set to localstorage
   useEffect(()=>{
     const todos = localStorage.getItem('todos')
     setTodos(JSON.parse(todos))
   }, [])
 
+  //This containes the todos state
   const [todos, setTodos] = useState({1234: {'input': '', isChecked: null}});
   
 
@@ -52,7 +52,8 @@ function TodoApp() {
               <Col xs='0' md='2' ></Col>
 
               <Col> 
-
+              {/* I map over the objects keys and use that to access the 
+              contents in the object and i also return each time a new todo */}
               {Object.keys(todos).map((item, i) => {
                 const todo = todos[item];
                 return <Todo 
