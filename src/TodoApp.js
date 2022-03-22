@@ -15,7 +15,7 @@ function TodoApp() {
     setTodos(JSON.parse(todos))
   }, [])
 
-  const [todos, setTodos] = useState({})
+  const [todos, setTodos] = useState({1234: {'input': '', isChecked: null}});
   
 
   
@@ -54,8 +54,10 @@ function TodoApp() {
               <Col> 
 
               {Object.keys(todos).map((item, i) => {
+                const todo = todos[item];
                 return <Todo 
-                text={todos[item]} 
+                text={todo['input']} 
+                isChecked={todo['isChecked']}
                 setTodo={setTodos} 
                 todos={todos} 
                 id={item}

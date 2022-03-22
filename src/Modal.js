@@ -12,7 +12,8 @@ function MyModal(props) {
     e.preventDefault();
 
     const newTodos = {...props.todos};
-    newTodos[props.parentsId] = input;
+    console.log(newTodos[props.parentsId])
+    newTodos[props.parentsId] = {'input': input, 'isChecked': props.isChecked};
     props.setTodo(newTodos);
     localStorage.setItem('todos', JSON.stringify(newTodos))
     props.setIsEditing(false);

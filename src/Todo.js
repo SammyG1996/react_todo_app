@@ -8,7 +8,7 @@ import MyModal from "./Modal";
 
 function Todo(props) {
 
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState(props.isChecked)
   const [isEditing, setIsEditing] = useState(false)
 
   const handelClick = () => {
@@ -21,6 +21,19 @@ function Todo(props) {
 
   const handleShow = () => setIsEditing(true);
 
+  const handleChecked = () => {
+    changeIsChecked()
+    setIsChecked(!isChecked);
+  }
+
+  const changeIsChecked = () => {
+    const newTodo = {...props.todos};
+    newTodo[props.id] = {'input': props.text, 'isChecked': !isChecked}
+    console.log(newTodo)
+    props.setTodo(newTodo);
+    localStorage.setItem('todos', JSON.stringify(newTodo));
+  }
+
   const showModal = () => {
       return(
         <MyModal 
@@ -30,6 +43,7 @@ function Todo(props) {
         setTodo={props.setTodo} 
         todos={props.todos}
         parentsId={props.id}
+        isChecked={isChecked}
         />
       )
   }
@@ -49,7 +63,7 @@ function Todo(props) {
                </Card.Text>
              </Col>
              <Col xs='2'>
-             <Button variant="success" size='sm' className='m-1' onClick={() => setIsChecked(!isChecked)}><i className="fa-solid fa-check"></i></Button>
+             <Button variant="success" size='sm' className='m-1' onClick={handleChecked}><i className="fa-solid fa-check"></i></Button>
                <Button variant="primary" size='sm' className='m-1' onClick={handleShow}><i className="fa-solid fa-pen-to-square"></i></Button>
                <Button variant="danger" size='sm' className='m-1' onClick={handelClick}><i className="fa-solid fa-trash"></i></Button>
              </Col>

@@ -10,8 +10,8 @@ function Input(props) {
 
   const handleClick = (e) => {
     e.preventDefault()
-    localStorage.setItem('todos', JSON.stringify({...props.todos, [uuidv4()]: input.valueOf()}))
-    props.setTodo({...props.todos, [uuidv4()]: input.valueOf()});
+    localStorage.setItem('todos', JSON.stringify({...props.todos, [uuidv4()]: {input: input.valueOf(), isChecked: false }}))
+    props.setTodo({...props.todos, [uuidv4()]: {'input': input.valueOf(), 'isChecked': false }});
     setInput('');
     
   }
